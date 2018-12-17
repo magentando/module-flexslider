@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   2018 Magentando (http://www.magentando.com.br)
+ * @license     http://www.magentando.com.br  Copyright
+ * @author      Leandro Rosa <dev.leandrorosa@gmail.com>
+ *
+ * @link        http://www.magentando.com.br
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magentando_FlexSlider::flexslider" title="FlexSlider" translate="title" module="Magento_Backend" sortOrder="90" parent="Magento_Backend::content" resource="Magentando_FlexSlider::flexslider"/>
+
+        <add id="Magentando_FlexSlider::images_index" title="Images" module="Magentando_FlexSlider" sortOrder="10" parent="Magentando_FlexSlider::flexslider" action="flexslider/images" resource="Magentando_FlexSlider::images"/>
+
+        <add id="Magentando_FlexSlider::groups_index" title="Groups" module="Magentando_FlexSlider" sortOrder="20" parent="Magentando_FlexSlider::flexslider" action="flexslider/groups" resource="Magentando_FlexSlider::groups"/>
+    </menu>
+</config>

@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   2018 Magentando (http://www.magentando.com.br)
+ * @license     http://www.magentando.com.br  Copyright
+ * @author      Leandro Rosa <dev.leandrorosa@gmail.com>
+ *
+ * @link        http://www.magentando.com.br
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">flexslider_groups_listing.flexslider_groups_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Group</label>
+            </button>
+        </buttons>
+        <spinner>flexslider_groups_columns</spinner>
+        <deps>
+            <dep>flexslider_groups_listing.flexslider_groups_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="flexslider_groups_listing_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Magento_FlexSlider::groups</aclResource>
+        <dataProvider class="FlexSliderGroupsProvider" name="flexslider_groups_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>main_table.group_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <container name="listing_top" template="ui/grid/toolbar">
+
+
+        <filterSearch name="fulltext" provider="flexslider_groups_listing.flexslider_groups_listing_data_source">
+            <settings>
+                <storageConfig>
+                    <namespace>current.search</namespace>
+                    <provider>flexslider_groups_listing.flexslider_groups_listing.listing_top.bookmarks</provider>
+                </storageConfig>
+                <chipsProvider>flexslider_groups_listing.flexslider_groups_listing.listing_top.listing_filters_chips</chipsProvider>
+            </settings>
+        </filterSearch>
+        <filters name="listing_filters">
+            <settings>
+                <columnsProvider>flexslider_groups_listing.flexslider_groups_listing.flexslider_groups_columns</columnsProvider>
+                <childDefaults>
+                    <param name="imports" xsi:type="array">
+                        <item name="visible" xsi:type="string">flexslider_groups_listing.flexslider_groups_listing.flexslider_groups_columns.${ $.index }:visible</item>
+                    </param>
+                    <param name="provider" xsi:type="string">flexslider_groups_listing.flexslider_groups_listing.listing_top.listing_filters</param>
+                </childDefaults>
+                <storageConfig>
+                    <namespace>current.filters</namespace>
+                    <provider>flexslider_groups_listing.flexslider_groups_listing.listing_top.bookmarks</provider>
+                </storageConfig>
+            </settings>
+        </filters>
+
+        <paging name="listing_paging">
+            <settings>
+                <selectProvider>flexslider_groups_listing.flexslider_groups_listing.flexslider_groups_columns.ids</selectProvider>
+                <storageConfig>
+                    <namespace>current.paging</namespace>
+                    <provider>flexslider_groups_listing.flexslider_groups_listing.listing_top.bookmarks</provider>
+                </storageConfig>
+            </settings>
+        </paging>
+    </container>
+    <columns name="flexslider_groups_columns">
+        <settings>
+            <storageConfig>
+                <namespace>current</namespace>
+                <provider>flexslider_groups_listing.flexslider_groups_listing.listing_top.bookmarks</provider>
+            </storageConfig>
+        </settings>
+        <column name="group_id" sortOrder="2">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="identifier" sortOrder="3">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Identifier</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="title" sortOrder="4">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Title</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="5">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Status</label>
+                <dataType>select</dataType>
+                <options>
+                    <option name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">Inactive</item>
+                    </option>
+                    <option name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Active</item>
+                    </option>
+                </options>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions" class="Magento\Backend\Ui\Component\Listing\Column\EditAction" sortOrder="999">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">flexslider/groups/edit</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>group_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

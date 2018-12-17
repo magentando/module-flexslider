@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   2018 Magentando (http://www.magentando.com.br)
+ * @license     http://www.magentando.com.br  Copyright
+ * @author      Leandro Rosa <dev.leandrorosa@gmail.com>
+ *
+ * @link        http://www.magentando.com.br
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="flexslider" frontName="flexslider">
+            <module name="Magentando_FlexSlider" />
+        </route>
+    </router>
+</config>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   2018 Magentando (http://www.magentando.com.br)
+ * @license     http://www.magentando.com.br  Copyright
+ * @author      Leandro Rosa <dev.leandrorosa@gmail.com>
+ *
+ * @link        http://www.magentando.com.br
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="admin.scope.col.wrap" />
+        <referenceContainer name="content">
+            <uiComponent name="flexslider_images_form"/>
+        </referenceContainer>
+    </body>
+</page>

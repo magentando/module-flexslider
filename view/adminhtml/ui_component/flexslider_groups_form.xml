@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   2018 Magentando (http://www.magentando.com.br)
+ * @license     http://www.magentando.com.br  Copyright
+ * @author      Leandro Rosa <dev.leandrorosa@gmail.com>
+ *
+ * @link        http://www.magentando.com.br
+ */
+-->
+<form  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">flexslider_groups_form.flexslider_groups_form_data_source</item>
+            <item name="deps" xsi:type="string">flexslider_groups_form.flexslider_groups_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Group</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">flexslider_groups_form</item>
+            <item name="submit_url" xsi:type="url" path="flexslider/group/save"/>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="delete" class="Magentando\FlexSlider\Ui\Component\Control\Group\DeleteButton"/>
+            <button name="save" class="Magentando\FlexSlider\Block\Adminhtml\Edit\SaveButton"/>
+        </buttons>
+        <namespace>flexslider_groups_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>flexslider_groups_form.flexslider_groups_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="flexslider_groups_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="flexslider/groups/save"/>
+        </settings>
+        <dataProvider class="Magentando\FlexSlider\Model\Group\DataProvider" name="flexslider_groups_form_data_source">
+            <settings>
+                <requestFieldName>group_id</requestFieldName>
+                <primaryFieldName>group_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="flexslider_group_details">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Group</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="group_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">hidden</item>
+                    <item name="source" xsi:type="string">group_id</item>
+                    <item name="dataScope" xsi:type="string">group_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="identifier" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">identifier</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Identifier</label>
+            </settings>
+        </field>
+        <field name="title" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">title</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+            </settings>
+        </field>
+        <field name="properties">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string">Properties</item>
+                    <item name="notice" xsi:type="string">For example: {animation: "slide"}, more details: http://flexslider.woothemes.com/</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">properties</item>
+                    <item name="dataScope" xsi:type="string">properties</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="fieldGroup" xsi:type="string">status</item>
+                    <item name="source" xsi:type="string">status</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Status</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+    </fieldset>
+
+</form>

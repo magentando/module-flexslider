@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @copyright   2018 Magentando (http://www.magentando.com.br)
+ * @license     http://www.magentando.com.br  Copyright
+ * @author      Leandro Rosa <dev.leandrorosa@gmail.com>
+ *
+ * @link        http://www.magentando.com.br
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Magentando\FlexSlider\Block\Widget\FlexSlider" id="flexslider">
+        <label>FlexSlider Widget</label>
+        <description>Create flexslider widget</description>
+        <parameters>
+            <parameter name="group_identifier" sort_order="10" visible="true" xsi:type="text">
+                <label>Group identifier</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

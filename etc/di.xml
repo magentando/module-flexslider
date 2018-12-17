@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   2018 Magentando (http://www.magentando.com.br)
+ * @license     http://www.magentando.com.br  Copyright
+ * @author      Leandro Rosa <dev.leandrorosa@gmail.com>
+ *
+ * @link        http://www.magentando.com.br
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magentando\FlexSlider\Api\Data\ImageInterface" type="Magentando\FlexSlider\Model\Image" />
+    <preference for="Magentando\FlexSlider\Api\Data\GroupInterface" type="Magentando\FlexSlider\Model\Group" />
+    <preference for="Magentando\FlexSlider\Api\GroupRepositoryInterface" type="Magentando\FlexSlider\Model\GroupRepository" />
+    <preference for="Magentando\FlexSlider\Api\ImageRepositoryInterface" type="Magentando\FlexSlider\Model\ImageRepository" />
+    <preference for="Magentando\FlexSlider\Api\ImageManagementInterface" type="Magentando\FlexSlider\Model\ImageManagement" />
+    <preference for="Magentando\FlexSlider\Api\ImageUploaderManagementInterface" type="Magentando\FlexSlider\Model\ImageUploaderManagement" />
+    <preference for="Magentando\FlexSlider\Api\GroupManagementInterface" type="Magentando\FlexSlider\Model\GroupManagement" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="flexslider_images_listing_data_source" xsi:type="string">FlexSliderImagesSearchResult</item>
+                <item name="flexslider_groups_listing_data_source" xsi:type="string">FlexSliderGroupsSearchResult</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="FlexSliderImagesProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magentando\FlexSlider\Model\ResourceModel\Image\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">FlexSliderImagesGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="FlexSliderImagesGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="FlexSliderGroupsProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magentando\FlexSlider\Model\ResourceModel\Group\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">FlexSliderGroupsGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="FlexSliderGroupsGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="FlexSliderImagesSearchResult" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="const">Magentando\FlexSlider\Model\ResourceModel\Image::SCHEMA_NAME</argument>
+            <argument name="resourceModel" xsi:type="string">Magentando\FlexSlider\Model\ResourceModel\Image</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="FlexSliderGroupsSearchResult" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="const">Magentando\FlexSlider\Model\ResourceModel\Group::SCHEMA_NAME</argument>
+            <argument name="resourceModel" xsi:type="string">Magentando\FlexSlider\Model\ResourceModel\Group</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magentando\FlexSlider\Ui\Component\Control\Group\DeleteButton" type="Magento\Backend\Ui\Component\Control\DeleteButton">
+        <arguments>
+            <argument name="confirmationMessage" xsi:type="string" translatable="true">Are you sure you want to delete this group?</argument>
+            <argument name="idFieldName" xsi:type="const">Magentando\FlexSlider\Model\Group::GROUP_ID</argument>
+            <argument name="deleteRoutePath" xsi:type="string">*/*/delete</argument>
+            <argument name="sortOrder" xsi:type="number">30</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magentando\FlexSlider\Ui\Component\Control\Group\SaveSplitButton" type="Magento\Backend\Ui\Component\Control\SaveSplitButton">
+        <arguments>
+            <argument name="targetName" xsi:type="string">flexslider_groups_form.flexslider_groups_form_data_source</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magentando\FlexSlider\Ui\Component\Control\Image\DeleteButton" type="Magento\Backend\Ui\Component\Control\DeleteButton">
+        <arguments>
+            <argument name="confirmationMessage" xsi:type="string" translatable="true">Are you sure you want to delete this image?</argument>
+            <argument name="idFieldName" xsi:type="const">Magentando\FlexSlider\Model\Image::IMAGE_ID</argument>
+            <argument name="deleteRoutePath" xsi:type="string">*/*/delete</argument>
+            <argument name="sortOrder" xsi:type="number">30</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magentando\FlexSlider\Ui\Component\Control\Image\SaveSplitButton" type="Magento\Backend\Ui\Component\Control\SaveSplitButton">
+        <arguments>
+            <argument name="targetName" xsi:type="string">flexslider_images_form.flexslider_images_form_data_source</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magentando\FlexSlider\ImageUploader" type="Magentando\FlexSlider\Model\ImageUploaderManagement">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">magentando_flexslider/tmp</argument>
+            <argument name="basePath" xsi:type="const">Magentando\FlexSlider\Helper\Data::BASE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magentando\FlexSlider\Controller\Adminhtml\Images\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magentando\FlexSlider\ImageUploader</argument>
+        </arguments>
+    </type>
+
+    <type name="Magentando\FlexSlider\Controller\Adminhtml\Images\Save">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magentando\FlexSlider\ImageUploader</argument>
+        </arguments>
+    </type>
+</config>

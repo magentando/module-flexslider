@@ -1,0 +1,42 @@
+<?php
+/**
+ * @copyright   2018 Magentando (http://www.magentando.com.br)
+ * @license     http://www.magentando.com.br  Copyright
+ * @author      Leandro Rosa <dev.leandrorosa@gmail.com>
+ *
+ * @link        http://www.magentando.com.br
+ * @var         \Magentando\FlexSlider\Block\Widget\FlexSlider $block
+ * @var         \Magentando\FlexSlider\Helper\Data $_helper
+ * @see         \Magentando\FlexSlider\Block\Widget\FlexSlider
+ */
+?>
+
+<?php if ($block->getGroup()->getGroupId()): ?>
+    <?php $_helper = $this->helper(\Magentando\FlexSlider\Helper\Data::class); ?>
+    <div class="block block-flexslider">
+        <div class="block-title">
+            <strong><?= $block->getGroup()->getTitle() ?></strong>
+        </div>
+        <div class="block-content">
+            <div class="flexslider" id="<?= $block->getData('group_identifier') ?>-slider">
+                <ul class="slides">
+                    <?php foreach ($block->getImages() as $image): ?>
+                        <li>
+                            <img src="<?= $_helper->getImageUrl($image) ?>" alt="<?= $block->getTitle() ?>" title="<?= $block->getTitle() ?>" />
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        require(['jquery', 'flexslider', 'domReady!'], function($){
+            $(function(){
+                $(document).ready(function() {
+                    $("#<?= $block->getData('group_identifier')  . '-slider'?>").flexslider(<?= $block->getProperties() ?>);
+                });
+            });
+        });
+    </script>
+<?php endif; ?>
