@@ -15,6 +15,9 @@ use Magento\Backend\App\Action;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Backend\App\Action\Context;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Upload extends Action
 {
     /** @var ImageUploaderManagementInterface  */
