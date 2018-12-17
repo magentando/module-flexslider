@@ -83,48 +83,4 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
         return $this->loadedData;
     }
-
-//    protected function test()
-//    {
-//        $baseurl =  $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
-//        if (isset($this->loadedData)) {
-//            return $this->loadedData;
-//        }
-//        $items = $this->collection->getItems();
-//        /** @var \Magento\Cms\Model\Block $block */
-//        foreach ($items as $helloworld) {
-//            $temp = $helloworld->getData();
-//            if($temp['image']):
-//                $img = [];
-//                $img[0]['image'] = $temp['image'];
-//                $img[0]['url'] = $baseurl.'test/'.$temp['image'];
-//                $temp['logo'] = $img;
-//            endif;
-//
-//
-//            $data = $this->dataPersistor->get('helloworld');
-//            if (!empty($data)) {
-//                $helloworld = $this->collection->getNewEmptyItem();
-//                $helloworld>setData($data);
-//                $this->loadedData[$helloworld->getLabelId()] = $helloworld->getData();
-//                $this->dataPersistor->clear('helloworld');
-//            }else {
-//                if($items):
-//                    if ($helloworld->getData('image') != null) {
-//
-//                        $t2[$helloworld>getId()] = $temp;
-//
-//                        return $t2;
-//                    } else {
-//
-//
-//                        return $this->loadedData;
-//
-//                    }
-//                endif;
-//            }
-//
-//
-//            return $this->loadedData;
-//    }
 }
